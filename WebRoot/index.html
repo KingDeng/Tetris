@@ -3,30 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Tetris-js</title>
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
-<script src="js/tetris.js"></script>
-<script type="text/javascript" src="js/*.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/Global.js"></script>
+<script type="text/javascript" src="js/Shape.js"></script>
+<script type="text/javascript" src="js/ShapeFactory.js"></script>
+<script type="text/javascript" src="js/Tetris.js"></script>
+
+<link href="css/tetris.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<svg viewBox="0 0 600 400" preserveaspectratio="xMidYMid meet" 
+<svg viewBox="0 0 500 400" preserveaspectratio="xMidYMid meet" 
 	xmlns="http://www.w3.org/2000/svg">
-	<rect x="1" y="1" width="598" height="398" ab="author"></rect>
+	<rect x="100" y="10" width="270" height="360" ab="author"></rect>
 	<g id="panel"></g>
 	
 	<g class="button">
-		<path id="btnNew" d="M 50 370 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z" class="button" ></path>
+		<path id="btnNew" d="M 450 70 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z" class="button" ></path>
 		<text class="events-none" x="76" y="382">New</text>
 	</g>
 	<g class="label">
-		<path d="M 120 370 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
+		<path d="M 450 130 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
 		<text id="time" x="145" y="382">0</text>
 	</g>
 	<g class="label">
-		<path d="M 430 370 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
+		<path d="M 450 190 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
 		<text id="needOpen" x="455" y="382"></text>
 	</g>
 	<g class="label">
-		<path d="M 500 370 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
+		<path d="M 450 250 l 7 -7 h35 l 7 7 v10 l -7 7 h-35 l -7 -7 z"></path>
 		<text id="minesRest" x="525" y="382"></text>
 	</g>
 </svg>

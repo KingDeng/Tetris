@@ -1,6 +1,6 @@
 var ShapeFactory = {
 		getShape: function(){
-			Shape shape = new Shape();
+			var shape = new Shape();
 			var type = Math.floor(Math.random() * this.shapes.length);
 			var curr = Math.floor(Math.random() * this.shapes[type].length);
 			shape.setBody(this.shapes[type]);

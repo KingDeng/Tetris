@@ -14,13 +14,13 @@ $(document).ready(function(){
 	for(var i = 0; i < Global.row; i++){
 		rects[i] = new Array(Global.column);
 		for(var j = 0; j < Global.column; j++){
-			var pointXy = {};
-			pointXy.x = Global.firstX + Global.cellSize * i;
-			pointXy.y = Global.firstY + Global.cellSize * j;
-			$("#panel").append(createRect(pointXy));
 			rects[i][j] = 0;
 		}
 	}
+	var pointXy = {};
+	pointXy.x = 150;
+	pointXy.y = 50;
+	$("#panel").append(createRect(pointXy));
 });
 
 function createRect(pointXy){
