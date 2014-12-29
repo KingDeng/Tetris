@@ -1,24 +1,24 @@
 var Shape = function(body, status){
+	this.rects;
 	this.body = body;		//图形的所有状态
 	this.status = status;	//当前状态
 	this.topDistence = -1;	//图形到顶部的距离
 	this.leftDistence = 6;	//图形到左边界的距离
-	this.rects = function(){
+	this.createBody = function(){
 		var temp = [],row = 0, col = 0, curr = body[status];
 		for(var i = 0; i < curr.length; i++){
 			row = Math.floor(i / 4);
 			col = i % 4;
 			if(curr[i] == 1){
-				var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-				$(rect).attr("x", Global.firstX + Global.cellSize * col);
-				$(rect).attr("y", Global.firstY + Global.cellSize * row);
-				$(rect).attr("width", Global.cellSize);
-				$(rect).attr("height", Global.cellSize);
+				var coord, rect;
+				coord.x = Global.firstX + Global.cellSize * col;
+				coord.y = Global.firstY + Global.cellSize * row;
+				rect = createRect(coord);
 				$("#panel").append(rect);
 				temp.push(rect);
 			}
 		}
-		return temp;
+		this.rects = temp;
 	};
 };
 Shape.prototype = {
@@ -29,16 +29,36 @@ Shape.prototype = {
 		this.status = status;
 	},
 	leftMove: function(){
-		this.leftDistence--;
+		for(var i = 0; i < this.rects.length; i++){
+			var x = $(this.rects[i]).attr("x");
+			$(this.rects[i]).attr("x", x - Global.cellSize);
+		}
 	},
 	rightMove: function(){
-		this.leftDistence++;
+		for(var i = 0; i < this.rects.length; i++){
+			var x = $(this.rects[i]).attr("x");
+			$(this.rects[i]).attr("x", x + Global.cellSize);
+		}
 	},
 	downMove: function(){
-		this.topDistence++;
+		for(var i = 0; i < this.rects.length; i++){
+			var y = $(this.rects[i]).attr("y");
+			$(this.rects[i]).attr("y", y + Global.cellSize);
+		}
 	},
 	rotate: function(){
 		this.status = (this.status + 1) % this.body.length;
-		
+		for(var i = 0; i < this.rects.length; i++){
+			$(this.rects[i]).remove();
+		}
+		this.createBody();
 	}
 };
+function createRect(coord){
+	var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	$(rect).attr("x", coord.x);
+	$(rect).attr("y", coord.y);
+	$(rect).attr("width", Global.cellSize);
+	$(rect).attr("height", Global.cellSize);
+	return rect;
+}
