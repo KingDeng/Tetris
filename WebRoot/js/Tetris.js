@@ -17,6 +17,7 @@ $(document).ready(function(){
 			rects[i][j] = 0;
 		}
 	}
+	$(document).keydown(Controller.keyEvent);
 	var pointXy = {};
 	pointXy.x = 150;
 	pointXy.y = 50;

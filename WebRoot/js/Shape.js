@@ -2,8 +2,6 @@ var Shape = function(body, status){
 	this.rects;
 	this.body = body;		//图形的所有状态
 	this.status = status;	//当前状态
-	this.topDistence = -1;	//图形到顶部的距离
-	this.leftDistence = 6;	//图形到左边界的距离
 	this.createBody = function(){
 		var temp = [],row = 0, col = 0, curr = body[status];
 		for(var i = 0; i < curr.length; i++){
@@ -20,6 +18,7 @@ var Shape = function(body, status){
 		}
 		this.rects = temp;
 	};
+	this.createBody();
 };
 Shape.prototype = {
 	setBody: function(body){
@@ -52,6 +51,9 @@ Shape.prototype = {
 			$(this.rects[i]).remove();
 		}
 		this.createBody();
+	},
+	downing: function(){
+		setTimeout(700,this.downing());
 	}
 };
 function createRect(coord){
