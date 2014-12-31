@@ -1,11 +1,9 @@
 var ShapeFactory = {
 		getShape: function(){
-			var shape = new Shape();
 			var type = Math.floor(Math.random() * this.shapes.length);
 			var curr = Math.floor(Math.random() * this.shapes[type].length);
-			shape.setBody(this.shapes[type]);
-			shape.setStatus(curr);
-			return shape;
+			Shape.init(this.shapes[type],curr);
+			return Shape.downing();
 		},
 		shapes: [
 					[

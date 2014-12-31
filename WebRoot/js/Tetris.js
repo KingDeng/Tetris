@@ -14,14 +14,11 @@ $(document).ready(function(){
 	for(var i = 0; i < Global.row; i++){
 		rects[i] = new Array(Global.column);
 		for(var j = 0; j < Global.column; j++){
-			rects[i][j] = 0;
+			rects[i][j] = -1;
 		}
 	}
 	$(document).keydown(Controller.keyEvent);
-	var pointXy = {};
-	pointXy.x = 150;
-	pointXy.y = 50;
-	$("#panel").append(createRect(pointXy));
+	ShapeFactory.getShape();
 });
 
 function createRect(pointXy){
