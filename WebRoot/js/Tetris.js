@@ -8,6 +8,7 @@
  * 
  * =================================================================
  */
+var idIndex = 0;
 var rects = new Array(Global.row);
 //初始化面板
 $(document).ready(function(){

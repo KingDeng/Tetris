@@ -1,4 +1,6 @@
 var Shape = {
+	top: 0,
+	left: 6,
 	timer: null,
 	rects: null,
 	body: null,
@@ -13,6 +15,8 @@ var Shape = {
 				coord.x = Global.firstX + Global.cellSize * col;
 				coord.y = Global.firstY + Global.cellSize * row;
 				rect = createRect(coord);
+				$(rect).attr("row", row);
+				$(rect).attr("col", col);
 				$("#panel").append(rect);
 				temp.push(rect);
 			}
@@ -20,6 +24,12 @@ var Shape = {
 		this.rects = temp;
 	},
 	init: function(body, status){
+		this.top = 0;
+		this.left = 6;
+		this.timer = null;
+		this.rects = null;
+		this.body = null;
+		this.status = null;
 		this.body = body;		//图形的所有状态
 		this.status = status;	//当前状态
 		this.createBody();
@@ -30,6 +40,7 @@ var Shape = {
 			var temp = parseInt(x) - Global.cellSize;
 			$(this.rects[i]).attr("x", temp);
 		}
+		this.left--;
 	},
 	rightMove: function(){
 		for(var i = 0; i < this.rects.length; i++){
@@ -37,6 +48,7 @@ var Shape = {
 			var temp = parseInt(x) + Global.cellSize;
 			$(this.rects[i]).attr("x", temp);
 		}
+		this.left++;
 	},
 	downMove: function(){
 		for(var i = 0; i < this.rects.length; i++){
@@ -44,6 +56,7 @@ var Shape = {
 			var temp = parseInt(y) + Global.cellSize;
 			$(this.rects[i]).attr("y", temp);
 		}
+		this.top++;
 	},
 	rotate: function(){
 		this.status = (this.status + 1) % this.body.length;

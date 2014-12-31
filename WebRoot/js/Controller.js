@@ -41,5 +41,19 @@ var Controller = {
 				return false;
 			}
 			return true;
+		},
+		accept: function(){
+			var curr = Shape.body[this.status];
+			for(var i = 0; i < Shape.rects.length; i++){
+				$(Shape.rects[i]).attr("id", idIndex);
+				idIndex++;
+			}
+			for(var i = 0; i < curr.length; i++){
+				row = Math.floor(i / 4);
+				col = i % 4;
+				if(curr[i] == 1){
+					rects[Shape.top + row][Shape.left + col] = idIndex;
+				}
+			}
 		}
 };
