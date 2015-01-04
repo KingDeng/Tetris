@@ -37,13 +37,14 @@ var Controller = {
 				max = max > t ? max : t;
 			}
 			if(max > 342){
+				this.accept();
 				ShapeFactory.getShape();
 				return false;
 			}
 			return true;
 		},
 		accept: function(){
-			var curr = Shape.body[this.status];
+			var curr = Shape.body[Shape.status];
 			for(var i = 0; i < Shape.rects.length; i++){
 				$(Shape.rects[i]).attr("id", idIndex);
 				idIndex++;
@@ -52,6 +53,7 @@ var Controller = {
 				row = Math.floor(i / 4);
 				col = i % 4;
 				if(curr[i] == 1){
+					var id = parseInt();
 					rects[Shape.top + row][Shape.left + col] = idIndex;
 				}
 			}
