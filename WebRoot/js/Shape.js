@@ -5,15 +5,15 @@ var Shape = {
 	rects: null,
 	body: null,
 	status: null,
-	createBody: function(){
+	createBody: function(left, top){
 		var temp = [],row = 0, col = 0, curr = this.body[this.status];
 		for(var i = 0; i < curr.length; i++){
 			row = Math.floor(i / 4);
 			col = i % 4;
 			if(curr[i] == 1){
 				var coord = {}, rect;
-				coord.x = Global.firstX + Global.cellSize * col;
-				coord.y = Global.firstY + Global.cellSize * row;
+				coord.x = left + Global.cellSize * col;
+				coord.y = top + Global.cellSize * row;
 				rect = createRect(coord);
 				$(rect).attr("row", row);
 				$(rect).attr("col", col);
@@ -32,7 +32,7 @@ var Shape = {
 		this.status = null;
 		this.body = body;		//图形的所有状态
 		this.status = status;	//当前状态
-		this.createBody();
+		this.createBody(Global.firstX, Global.firstY);
 	},
 	leftMove: function(){
 		for(var i = 0; i < this.rects.length; i++){
@@ -57,20 +57,21 @@ var Shape = {
 			$(this.rects[i]).attr("y", temp);
 		}
 		this.top++;
+		if(!Controller.isDownable()){
+			clearInterval(this.timer);
+		}
 	},
 	rotate: function(){
 		this.status = (this.status + 1) % this.body.length;
 		for(var i = 0; i < this.rects.length; i++){
 			$(this.rects[i]).remove();
 		}
-		this.createBody();
+		var left = parseInt($(this.rects[0]).attr("x"));
+		var top = parseInt($(this.rects[0]).attr("y"));
+		this.createBody(left, top);
 	},
 	downing: function(){
-		this.downMove();
-		this.timer = setTimeout(function(){Shape.downing();}, 1000);
-		if(!Controller.isDownable()){
-			clearInterval(this.timer);
-		}
+		this.timer = setInterval(function(){Shape.downMove();}, 700);
 	}
 };
 function createRect(coord){

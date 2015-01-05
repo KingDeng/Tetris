@@ -21,12 +21,3 @@ $(document).ready(function(){
 	$(document).keydown(Controller.keyEvent);
 	ShapeFactory.getShape();
 });
-
-function createRect(pointXy){
-	var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-	$(rect).attr("x", pointXy.x);
-	$(rect).attr("y", pointXy.y);
-	$(rect).attr("width", Global.cellSize);
-	$(rect).attr("height", Global.cellSize);
-	return rect;
-};
