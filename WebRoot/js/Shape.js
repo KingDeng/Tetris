@@ -1,5 +1,5 @@
 var Shape = {
-	top: 0,
+	top: -1,
 	left: 6,
 	timer: null,
 	rects: null,
@@ -24,7 +24,7 @@ var Shape = {
 		this.rects = temp;
 	},
 	init: function(body, status){
-		this.top = 0;
+		this.top = -1;
 		this.left = 6;
 		this.timer = null;
 		this.rects = null;
